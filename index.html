@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cinetech</title>
+</head>
+<body>
+    <div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>CineTech</h2>
+        <ul>
+            <li onclick="showSection('dashboard')">Dashboard</li>
+            <li onclick="showSection('films')">Films</li>
+            <li onclick="showSection('directors')">Réalisateurs</li>
+        </ul>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="section">
+            <h1>Dashboard Cinéma</h1>
+
+            <div class="kpis">
+                <div class="kpi">🎞️ Films<br><span id="kpi-films">0</span></div>
+                <div class="kpi">🎬 Réalisateurs<br><span id="kpi-directors">0</span></div>
+                <div class="kpi">⭐ Note IMDb<br><span id="kpi-rating">0</span></div>
+            </div>
+
+            <div class="api-box">
+                <input id="movieSearch" placeholder="Nom du film">
+                <button class="film" onclick="loadFromAPI()">Importer depuis OMDB</button>
+                <p id="apiMsg"></p>
+            </div>
+        </section>
+
+        <!-- FILMS -->
+        <section id="films" class="section hidden">
+            <h1>Gestion des Films</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Poster</th>
+                        <th>Titre</th>
+                        <th>Genre</th>
+                        <th>Année</th>
+                        <th>Réalisateur</th>
+                        <th>Note</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="filmList"></tbody>
+            </table>
+        </section>
+
+        <!-- DIRECTORS -->
+        <section id="directors" class="section hidden">
+            <h1>Réalisateurs</h1>
+
+            <form id="directorForm">
+                <input id="directorName" placeholder="Nom du réalisateur" required>
+                <button>Ajouter</button>
+            </form>
+
+            <ul id="directorList"></ul>
+        </section>
+
+    </main>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
