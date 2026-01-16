@@ -26,6 +26,8 @@
   <!-- Icones (Heroicons / Remix / autre) optionnel -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" integrity="sha512-dlGSm4MH5IY9R97Y9T0HXSPrFdj84bVyJX0KvuqB/tQhlj9Os6pVDx1Gg2sdWz1tX5F3r2eF9sDS21gJ+1v2wA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <body class="bg-slate-950 text-slate-100 min-h-screen">
 
   <div class="flex min-h-screen">
@@ -147,13 +149,62 @@
             </div>
             <p id="apiMsg" class="text-xs mt-2 text-emerald-400"></p>
           </div>
+          
+
+          <!-- PIE CHART -->
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 mt-8 shadow-lg shadow-black/40">
+            <h2 class="text-lg font-semibold mb-4 flex items-center gap-2">
+              <i class="ri-pie-chart-fill text-yellow-400"></i>
+              Répartition des films par genre
+            </h2>
+
+            <div class="h-72 flex justify-center">
+              <canvas id="genrePieChart"></canvas>
+            </div>
+          </div>
+
+          <!-- LINE CHART -->
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 mt-8 shadow-lg shadow-black/40">
+            <h2 class="text-lg font-semibold mb-4 flex items-center gap-2">
+              <i class="ri-line-chart-fill text-yellow-400"></i>
+              Évolution des films par année
+            </h2>
+
+            <div class="h-72">
+              <canvas id="yearChart"></canvas>
+            </div>
+          </div>
+
+
+
         </section>
 
         <!-- FILMS -->
         <section id="films" class="section hidden">
           <div class="flex items-center justify-between mb-4">
-            <h1 class="text-2xl font-semibold tracking-tight">Gestion des films</h1>
           </div>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+            <h1 class="text-2xl font-semibold tracking-tight">Gestion des films</h1>
+
+            <div class="flex gap-2">
+              <!-- Tri alphabétique -->
+              <select id="sortAlpha"
+                class="bg-slate-900 border border-slate-700 text-sm rounded-lg px-3 py-2"
+                onchange="sortFilmsAlpha(this.value)">
+                <option value="">Tri alphabétique</option>
+                <option value="az">A → Z</option>
+                <option value="za">Z → A</option>
+              </select>
+
+              <!-- Tri par catégorie -->
+              <select id="sortGenre"
+                class="bg-slate-900 border border-slate-700 text-sm rounded-lg px-3 py-2"
+                onchange="sortFilmsGenre(this.value)">
+                <option value="">Par catégorie</option>
+              </select>
+            </div>
+          </div>
+
 
           <div class="bg-slate-900/80 border border-slate-800 rounded-xl overflow-hidden shadow-lg shadow-black/40">
             <div class="overflow-x-auto">
@@ -174,6 +225,7 @@
             </div>
           </div>
         </section>
+
 
         <!-- DIRECTORS -->
         <section id="directors" class="section hidden">
